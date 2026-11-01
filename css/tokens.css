@@ -1,0 +1,46 @@
+/* Design tokens: every colour/font the page and the canvas read. Light + dark. The canvas reads these via js/core/colors.js */
+:root {
+  --bg: #eef2f8;
+  --fg: #1d1c26;
+  --muted: #5d6275;
+  --panel: #ffffff;
+  --line: #1d1c26;
+  --accent: #f5b800;
+  --accent-fg: #1d1c26;
+  --sky1: #bfe3ff;
+  --sky2: #f3f9ff;
+  --hill: #cfe3f6;
+  --hill2: #b4d3ee;
+  --cloud: #ffffff;
+  --star: #f5b800;
+  --ground: #2a2933;
+  --groundLine: #f5b800;
+  --pebble: #4a4958;
+  --slime: #4fd17a;
+  --slimeDark: #1b8c48;
+  --fly: #a58bff;
+  --flyDark: #5a3fc4;
+  --wing: rgba(255,255,255,0.85);
+  --dust: #a9bdd4;
+  --zdark: 0;
+  --font-display: "Mitr", "Kanit", system-ui, sans-serif;
+  --font-body: "Kanit", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101119; --fg: #f2f0ff; --muted: #9a9db5; --panel: #1b1c29; --line: #f2f0ff;
+    --accent: #ffd23f; --accent-fg: #17161e;
+    --sky1: #171c3a; --sky2: #2d3262; --hill: #262b57; --hill2: #1f2347; --cloud: #3a3f78; --star: #ffd23f;
+    --ground: #09090e; --groundLine: #ffd23f; --pebble: #2c2c3c;
+    --slime: #5be38a; --slimeDark: #1b8c48; --fly: #b9a5ff; --flyDark: #6a4fd8; --wing: rgba(255,255,255,0.7); --dust: #6a70a8; --zdark: 1;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101119; --fg: #f2f0ff; --muted: #9a9db5; --panel: #1b1c29; --line: #f2f0ff;
+  --accent: #ffd23f; --accent-fg: #17161e;
+  --sky1: #171c3a; --sky2: #2d3262; --hill: #262b57; --hill2: #1f2347; --cloud: #3a3f78; --star: #ffd23f;
+  --ground: #09090e; --groundLine: #ffd23f; --pebble: #2c2c3c;
+  --slime: #5be38a; --slimeDark: #1b8c48; --fly: #b9a5ff; --flyDark: #6a4fd8; --wing: rgba(255,255,255,0.7); --dust: #6a70a8; --zdark: 1;
+  color-scheme: dark;
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>สไลม์รัน</title>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500&family=Mitr:wght@500;600&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/hud-touch.css">
+<link rel="stylesheet" href="css/phone.css">
+<link rel="stylesheet" href="css/extras.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <h1>สไลม์รัน</h1>
+  </header>
+
+  <div class="stage" id="stage">
+    <canvas id="game" aria-label="เกมวิ่งหลบสไลม์"></canvas>
+    <div class="corner"><button class="fs" id="btnMusic" aria-pressed="true">เสียง: เปิด</button><button class="fs" id="btnFull" hidden>เต็มจอ</button></div>
+    <div class="toast" id="toast" hidden></div>
+    <div class="hud" aria-live="off">
+      <div><span>คะแนน</span><b id="score">0</b></div>
+      <div id="bestWrap"><span>สูงสุด</span><b id="best">0</b></div>
+      <div id="moneyWrap"><span>เงิน</span><b id="money">0/600</b></div>
+      <div id="spdWrap"><span>ความเร็ว</span><b id="spd">×1.0</b></div>
+      <div><span>บอสถัดไป</span><b id="nextBoss">500</b></div>
+    </div>
+    <div class="touch">
+      <div class="tg left"><button class="tb big primary" id="tDash" hidden>พุ่ง</button><button class="tb big alt" id="tThrow" hidden>ปาดาว</button></div>
+      <div class="tg right"><button class="tb big" id="tDuck">ก้ม</button></div>
+    </div>
+    <div class="overlay" id="overlay">
+      <h2 id="ovTitle">พร้อมวิ่งหรือยัง?</h2>
+      <p id="ovText">แตะที่ไหนก็ได้บนจอเพื่อกระโดด ปุ่มก้มอยู่มุมขวาล่าง เก็บเหรียญครบ 600 เพื่อพุ่งแบบไม่โดนดาเมจ 2 วินาที มินิบอสมาที่ 500 แล้วมาทุก +1000 (อึดขึ้นเรื่อยๆ) ส่วนบอสใหญ่มาที่ 1000, 5000, 10000 เมื่อบอสมาจะมีปุ่มปาดาวขึ้นมาให้</p>
+      <div class="big" id="ovScore" hidden></div>
+      <button class="primary go" id="btnStart">เริ่มวิ่ง</button>
+    </div>
+  </div>
+
+  <div class="pad">
+    <button class="primary" id="btnJump">กระโดด</button>
+    <button id="btnDuck">ก้ม</button>
+    <button class="primary" id="btnDash" hidden>พุ่ง</button>
+    <button class="alt" id="btnThrow" hidden>ปาดาว</button>
+  </div>
+  <p class="hint">คีย์บอร์ด: <kbd>Space</kbd> หรือ <kbd>↑</kbd> กระโดด (กดค้างเพื่อกระโดดสูง) · <kbd>↓</kbd> ก้ม และตกลงพื้นเร็วขึ้นกลางอากาศ · <kbd>E</kbd> หรือ <kbd>Shift</kbd> พุ่ง (ใช้เงิน 600) · <kbd>F</kbd> หรือ <kbd>J</kbd> ปาดาว ใช้ได้ตอนบอสมาเท่านั้น (กดค้างเพื่อยิงรัว) ดาวช่วยทำลายสไลม์ที่บอสพ่นมาได้ด้วย</p>
+</main>
+
+<div class="rotate" id="rotate"><i></i><div>หมุนโทรศัพท์เป็นแนวนอนเพื่อเล่น</div></div>
+
+<div class="rotate" id="rotate"><i></i><div>หมุนโทรศัพท์เป็นแนวนอนเพื่อเล่น</div></div>
+
+<script src="js/core/registry.js"></script>
+<script src="js/config.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/dom.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/core/layout.js"></script>
+<script src="js/core/colors.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/game/flow.js"></script>
+<script src="js/input.js"></script>
+<script src="js/game/spawn.js"></script>
+<script src="js/data/bosses.js"></script>
+<script src="js/game/boss.js"></script>
+<script src="js/game/coins.js"></script>
+<script src="js/ui/buttons.js"></script>
+<script src="js/game/update.js"></script>
+<script src="js/fx/particles.js"></script>
+<script src="js/render/helpers.js"></script>
+<script src="js/render/zones.js"></script>
+<script src="js/render/obstacles.js"></script>
+<script src="js/render/boss.js"></script>
+<script src="js/render/coins.js"></script>
+<script src="js/render/player.js"></script>
+<script src="js/render/scene.js"></script>
+<script src="js/biomes/city.js"></script>
+<script src="js/biomes/desert.js"></script>
+<script src="js/biomes/sea.js"></script>
+<script src="js/biomes/snow.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

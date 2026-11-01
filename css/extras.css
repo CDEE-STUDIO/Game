@@ -1,0 +1,11 @@
+/* Button pop-in, coin-full colour, corner buttons, toast, fullscreen */
+.tb.show, #btnThrow.show, #btnDash.show { animation: appear 0.3s ease-out; }
+@keyframes appear { 0% { transform: scale(0.4); opacity: 0; } 70% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .tb.show, #btnThrow.show, #btnDash.show { animation: none; } }
+#moneyWrap.full b { color: var(--accent); }
+.corner { position: absolute; top: 8px; left: max(10px, env(safe-area-inset-left, 0px)); z-index: 5; display: flex; gap: 8px; }
+.fs { min-height: 38px; padding: 0 12px; font-size: 0.85rem; border-radius: 10px; opacity: 0.88; }
+.fs[aria-pressed="false"] { opacity: 0.6; }
+.toast { position: absolute; top: 56px; left: 50%; transform: translateX(-50%); z-index: 6; max-width: min(80%, 460px); padding: 8px 14px; border-radius: 10px; background: var(--fg); color: var(--bg); font-size: 0.9rem; line-height: 1.4; text-align: center; }
+.stage:fullscreen { display: flex; align-items: center; justify-content: center; border: 0; border-radius: 0; background: var(--bg); }
+.stage:fullscreen canvas { max-height: 100%; object-fit: contain; }
